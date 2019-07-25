@@ -1,6 +1,6 @@
 'use strict'
 
-function Thermostat() {
+var Thermostat = function() {
   this.MINIMUM_TEMPERATURE = 10;
   this.DEFAULT_TEMPERATURE = 20;
   this.temperature = this.DEFAULT_TEMPERATURE;
