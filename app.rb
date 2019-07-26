@@ -5,14 +5,26 @@ class Thermostat < Sinatra::Base
   enable :sessions
 
   get '/' do
+
+    if session[:temperature] == nil
+      p "making the default temperature 20"
+      @temperature = "20"
+    else
+      @temperature = session[:temperature]
+    end
+    #
+    # if session[:powerSavingMode] == nil
+    #   @powerSavingMode = 'on'
+    # else
+    #   @powerSavingMode = session[:powerSavingMode]
+    # end
     erb :index
   end
 
   post '/temperature' do
     session[:temperature] = params[:temperature]
+    session[:powerSavingMode] = params[:powerSavingMode]
     p params
-    p "post request works"
-    p session[:temperature]
 
   end
 

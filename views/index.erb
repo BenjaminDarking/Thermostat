@@ -8,7 +8,7 @@
   <body>
     <div id="background1">
     <center><section>
-      <h1 id="temperature"></h1>
+      <h1>Current temperature: <p id="temperature"> <%=@temperature%> </p> </h1>
        <div class="courier">
          <h1>Outside Temp: <span id="current-temperature"></span></h1>
          <select id="current-city">
@@ -19,7 +19,7 @@
   </select>
         <br><button id="temp-up">+</button>
         <button id="temp-down">-</button>
-        <br><font color="#ffff00">Power Saving Mode is: <span id="power-saving-status"></span></font>
+        <br><font color="#ffff00">Power Saving Mode is: </font> <span id="power-saving-status"> <%= @powerSavingMode %> </span>
         <br><div class="tooltip"><button class="button button3" id="psm-on">PSM on </button><span  class="tooltiptext">Saving the planet bro!</span>
         </div>
         <div class="tooltip"><button class="button button4" id="psm-off">PSM off</button><span  class="tooltiptext">Why do you hate the planet?!</span></div>
