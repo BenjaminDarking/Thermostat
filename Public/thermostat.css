@@ -1,0 +1,58 @@
+
+p.courier {
+  font-family: "Courier New", Courier, monospace;
+}
+h1 {
+  font-family: courier;
+}
+#background1 {
+  background-image: url(bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto;
+  border-radius: 40px;
+}
+.button3 {
+  border-radius: 40%;
+  background-color: #4CAF50;
+  border: none;
+}
+.button4 {
+  border-radius: 40%;
+  background-color: #f44336;
+  border: none;
+}
+.button5 {
+  border-radius: 40%;
+  background-color: #978F8D;
+  border: none;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: grey;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible
+}
+.low-usage {
+  color: green;
+}
+.medium-usage {
+  color: black;
+}
+.high-usage {
+  color: red;
+}
