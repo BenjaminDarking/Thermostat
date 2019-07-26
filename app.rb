@@ -12,12 +12,16 @@ class Thermostat < Sinatra::Base
     else
       @temperature = session[:temperature]
     end
-    #
-    # if session[:powerSavingMode] == nil
-    #   @powerSavingMode = 'on'
-    # else
-    #   @powerSavingMode = session[:powerSavingMode]
-    # end
+
+    p "power saving mode is"
+    p session[:powerSavingMode]
+    
+    if session[:powerSavingMode] == nil
+      @powerSavingMode = 'on'
+    else
+      @powerSavingMode = session[:powerSavingMode]
+    end
+
     erb :index
   end
 

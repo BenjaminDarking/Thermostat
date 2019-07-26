@@ -3,23 +3,28 @@ $(document).ready(function() {
          var thermostat = new Thermostat();
 
          var temp = $('#temperature').text();
-         // var psm = $('#power-saving-status').text();
-         console.log(temp)
+         var psm = $('#power-saving-status').text();
+
 
          thermostat.temperature = parseInt(temp,10);
-         console.log(thermostat.temperature)
 
-         // if(psm==='off'){
-         //   thermostat.powerSavingMode = false;
-         // }
-         // updateTemperature();
+
+         if(psm==='off'){
+           thermostat.powerSavingMode = false;
+         }
 
          $(window).on('unload', function() {
+           var on_or_off
+           if(thermostat.powerSavingMode === true) {
+             on_or_off = 'on'
+           } else {
+             on_or_off = 'off'
+           }
            $.ajax({
              type: 'POST',
              url: '/temperature',
-             data: { temperature: thermostat.temperature },
-                     // powerSavingMode: thermostat.powerSavingMode},
+             data: { temperature: thermostat.temperature,
+                     powerSavingMode: on_or_off},
              async: false
            });
          });
@@ -45,6 +50,7 @@ $('#psm-off').click(function() {
 thermostat.switchPowerSavingModeOff();
 $('#power-saving-status').text('off')
 updateTemperature();
+console.log(thermostat.powerSavingMode)
 })
 $.get('http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
 $('#current-temperature').text(data.main.temp);
