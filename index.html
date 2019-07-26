@@ -1,16 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <style>
-
 p.courier {
   font-family: "Courier New", Courier, monospace;
 }
-
 h1 {
   font-family: courier;
 }
-
 #background1 {
   background-image: url(Public/bg.jpg);
   background-repeat: no-repeat;
@@ -33,13 +29,10 @@ h1 {
   background-color: #978F8D;
   border: none;
 }
-
 .tooltip {
   position: relative;
   display: inline-block;
-
 }
-
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 100px;
@@ -48,28 +41,23 @@ h1 {
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-}
 
+}
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+  visibility: visible
 }
-
 .low-usage {
   color: green;
 }
-
 .medium-usage {
   color: black;
 }
-
 .high-usage {
   color: red;
 }
-
 </style>
   <head>
     <title>Thermostat</title>
@@ -79,7 +67,14 @@ h1 {
     <center><section>
       <h1 id="temperature"></h1>
        <p class="courier">
-        <button id="temp-up">+</button>
+         <h1>Outside temp: <span id="current-temperature"></span></h1>
+         <select id="current-city">
+    <option value="london">London</option>
+    <option value="newyork">New York</option>
+    <option value="paris">Paris</option>
+    <option value="tokyo">Tokyo</option>
+  </select>
+        <br><button id="temp-up">+</button>
         <button id="temp-down">-</button>
         <br><font color="#ffff00">Power Saving Mode is: <span id="power-saving-status"></span></font>
         <br><div class="tooltip"><button class="button button3" id="psm-on">PSM on </button><span  class="tooltiptext">Saving the planet bro!</span>
@@ -94,38 +89,41 @@ h1 {
     <script src="node_modules/jquery/dist/jquery.js"></script>
 
     <script>
-
     $(document).ready(function() {
              var thermostat = new Thermostat();
              updateTemperature();
-
   $('#temp-up').click(function() {
     thermostat.up();
     updateTemperature();
   });
-
   $('#temp-down').click(function() {
     thermostat.down();
     updateTemperature();
   });
-
   $('#temp-reset').click(function() {
     thermostat.resetTemperature();
     updateTemperature();
   });
-
   $('#psm-on').click(function() {
     thermostat.switchPowerSavingModeOn();
     $('#power-saving-status').text('on')
     updateTemperature();
   })
-
   $('#psm-off').click(function() {
     thermostat.switchPowerSavingModeOff();
     $('#power-saving-status').text('off')
     updateTemperature();
   })
+  $.get('http://api.openweathermap.org/data/2.5/weather?q=London&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
+  $('#current-temperature').text(data.main.temp);
+  })
 
+  $('#current-city').change(function() {
+    var city = $('#current-city').val();
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
+    $('#current-temperature').text(data.main.temp)
+  })
+})
   function updateTemperature() {
   $('#temperature').text('Current Temp: ' + thermostat.getCurrentTemperature());
     $('#temperature').attr('class', thermostat.energyUsage());
@@ -133,11 +131,8 @@ h1 {
 });
 
 $(document).ready(function() {
-
   $("#power-saving-status").hide(300).show(1000);
 });
-
-
     </script>
   </body>
 </html>
