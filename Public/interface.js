@@ -9,8 +9,11 @@ $(document).ready(function() {
          thermostat.temperature = parseInt(temp,10);
 
 
-         if(psm==='off'){
+         if(psm === " off ") {
+           console.log("this loop is running")
            thermostat.powerSavingMode = false;
+         } else {
+           console.log("else")
          }
 
          $(window).on('unload', function() {
